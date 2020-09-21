@@ -7,11 +7,14 @@ public class Player : MonoBehaviour
     public float fuerza;
     Rigidbody rb;
 
-    void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
-
+        
+    /**
+     * Este método se ejecuta una vez por frame
+     */
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))

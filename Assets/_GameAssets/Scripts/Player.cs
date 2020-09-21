@@ -11,10 +11,8 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
-        
-    /**
-     * Este método se ejecuta una vez por frame
-     */
+       
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -22,5 +20,15 @@ public class Player : MonoBehaviour
             Vector3 impulso = new Vector3(0, fuerza, 0);
             rb.AddForce(impulso);
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Destroy(this.gameObject);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        print("+1");
     }
 }

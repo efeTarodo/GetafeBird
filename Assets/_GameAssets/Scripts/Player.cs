@@ -29,6 +29,6 @@ public class Player : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        print("+1");
+        GameObject.Find("GameManager").GetComponent<GameManager>().IncrementarPuntuacion();
     }
 }

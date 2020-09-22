@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject prefabSangre;
     public float fuerza;
     Rigidbody rb;
 
@@ -24,7 +26,8 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(this.gameObject);
+        Instantiate(prefabSangre, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
     private void OnTriggerExit(Collider other)

@@ -11,6 +11,23 @@ public class GameManager : MonoBehaviour
     private int score = 0;
     private bool playing = false;
 
+    private void Awake()
+    {
+        Time.timeScale = 0f;
+    }
+
+    private void Update()
+    {
+        if (playing == false) {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Time.timeScale = 1;
+                GameObject.Find("TextPulsa").SetActive(false);
+                playing = true;
+            }
+        }
+    }
+
     public void IncrementarPuntuacion()
     {
         score++;//score = score + 1;

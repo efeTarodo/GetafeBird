@@ -18,6 +18,13 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            print("FIN DEL JUEGO");
+            Application.Quit();
+        }
+
+
         if (playing == false) {
             if (Input.GetKeyDown(KeyCode.Space))
             {

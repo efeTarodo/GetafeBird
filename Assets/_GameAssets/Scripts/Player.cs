@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -21,17 +22,24 @@ public class Player : MonoBehaviour
         {
             Vector3 impulso = new Vector3(0, fuerza, 0);
             rb.AddForce(impulso);
+            GetComponent<AudioSource>().Play();
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Instantiate(prefabSangre, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        Instantiate(prefabSangre, transform);
+        Invoke("CargarEscena", 3);
     }
 
     private void OnTriggerExit(Collider other)
     {
         GameObject.Find("GameManager").GetComponent<GameManager>().IncrementarPuntuacion();
+        other.gameObject.GetComponent<AudioSource>().Play();
+    }
+
+    private void CargarEscena()
+    {
+        SceneManager.LoadScene("MainScene");
     }
 }

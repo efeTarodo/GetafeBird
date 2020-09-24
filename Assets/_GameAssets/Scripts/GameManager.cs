@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour
             Application.Quit();
         }
 
-
         if (playing == false) {
             if (Input.GetKeyDown(KeyCode.Space))
             {

@@ -11,6 +11,16 @@ public class GameManager : MonoBehaviour
     private int score = 0;
     private bool playing = false;
 
+    public bool IsPlaying()
+    {
+        return playing;
+    }
+
+    public void StopGame()
+    {
+        playing = false;
+    }
+
     private void Awake()
     {
         Time.timeScale = 0f;
@@ -29,7 +39,10 @@ public class GameManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Time.timeScale = 1;
-                GameObject.Find("TextPulsa").SetActive(false);
+                if (GameObject.Find("TextPulsa") != null)
+                {
+                    GameObject.Find("TextPulsa").SetActive(false);
+                }
                 playing = true;
             }
         }

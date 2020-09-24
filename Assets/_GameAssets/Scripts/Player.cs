@@ -9,26 +9,30 @@ public class Player : MonoBehaviour
     private GameObject prefabSangre;
     public float fuerza;
     Rigidbody rb;
+    GameManager manager;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        manager = GameObject.Find("GameManager").GetComponent <GameManager>();
     }
-       
-    
+
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Vector3 impulso = new Vector3(0, fuerza, 0);
             rb.AddForce(impulso);
-            GetComponent<AudioSource>().Play();
+            GetComponents<AudioSource>()[0].Play();
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        manager.StopGame();
         Instantiate(prefabSangre, transform);
+        gameObject.GetComponents<AudioSource>()[1].Play();
         Invoke("CargarEscena", 3);
     }
 
